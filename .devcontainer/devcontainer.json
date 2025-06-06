@@ -1,0 +1,33 @@
+{
+  "name": "Radar SAP Dev",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
+  "workspaceFolder": "/workspaces/radar-sap",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/pipx:1": {}
+  },
+  "postCreateCommand": "pip install -r requirements.txt && playwright install chromium && docker compose up -d postgres rabbitmq elasticsearch",
+  "forwardPorts": [
+    5432,
+    5672,
+    15672,
+    8000,
+    8501
+  ],
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.pythonPath": "/usr/local/bin/python",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  }
+}
